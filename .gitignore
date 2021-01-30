@@ -15,4 +15,5 @@
 # vendor/
 
 # JetBrains IDE
-./idea
+*.iml
+.idea/
