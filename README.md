@@ -8,14 +8,30 @@ Official Go wrapper for Tatsu's API
 go get github.com/tatsuworks/tatsu-api-go
 ```
 
-## Example
+## Example 1: using background context
 
 ```go
 import tatsuapi "github.com/tatsuworks/tatsu-api-go"
 
 client := tatsuapi.New("YOUR_API_KEY")
 
-user, err := client.getUserProfile("273261090404696074")
+user, err := client.GetUserProfile("172002275412279296")
+if err == nil {
+    fmt.Println("Rep: " + user.Reputation)
+}
+```
+
+## Example 2: using timeout context
+
+```go
+import tatsuapi "github.com/tatsuworks/tatsu-api-go"
+
+client := tatsuapi.New("YOUR_API_KEY")
+
+ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+defer cancel()
+
+user, err := client.GetUserProfileWithContext("172002275412279296", ctx)
 if err == nil {
     fmt.Println("Rep: " + user.Reputation)
 }
