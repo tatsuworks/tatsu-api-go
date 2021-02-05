@@ -9,7 +9,7 @@ type Client struct {
 	rc *restClient
 }
 
-func NewClient(apikey string) *Client {
+func New(apikey string) *Client {
 	return &Client{
 		rc: newRestClient(apikey),
 	}
