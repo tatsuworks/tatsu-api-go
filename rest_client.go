@@ -3,8 +3,9 @@ package tatsu_api
 import (
 	"context"
 	"encoding/json"
-	"golang.org/x/xerrors"
 	"net/http"
+
+	"golang.org/x/xerrors"
 )
 
 type restClient struct {
@@ -40,7 +41,7 @@ func (rc *restClient) getAllTimeGuildMemberRanking(ctx context.Context, guildID 
 	return ranking, err
 }
 
-func (rc *restClient) getAllTimeGuildRankings(ctx context.Context, guildID string) (*GuildRankings, error) {
+func (rc *restClient) getAllTimeGuildRankings(ctx context.Context, guildID string, offset uint64) (*GuildRankings, error) {
 	// Ensure guild ID is not empty.
 	if guildID == "" {
 		return nil, xerrors.New("guild id was empty")
@@ -49,7 +50,7 @@ func (rc *restClient) getAllTimeGuildRankings(ctx context.Context, guildID strin
 	var rankings *GuildRankings
 
 	// Make request.
-	err := rc.get(ctx, getAllTimeGuildRankings(guildID), &rankings)
+	err := rc.get(ctx, getAllTimeGuildRankings(guildID, offset), &rankings)
 
 	return rankings, err
 }

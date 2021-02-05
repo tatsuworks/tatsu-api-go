@@ -8,8 +8,8 @@ func getAllTimeGuildMemberRanking(guildID string, userID string) string {
 	return baseURL + fmt.Sprintf("/guilds/%s/rankings/members/%s/all", guildID, userID)
 }
 
-func getAllTimeGuildRankings(guildID string) string {
-	return baseURL + fmt.Sprintf("/guilds/%s/rankings/all", guildID)
+func getAllTimeGuildRankings(guildID string, offset uint64) string {
+	return baseURL + fmt.Sprintf("/guilds/%s/rankings/all?offset=%v", guildID, offset)
 }
 
 func getUserProfile(userID string) string {
