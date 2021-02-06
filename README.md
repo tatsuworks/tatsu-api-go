@@ -31,7 +31,7 @@ client := tatsuapi.New("YOUR_API_KEY")
 ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 defer cancel()
 
-user, err := client.GetUserProfileWithContext("172002275412279296", ctx)
+user, err := client.GetUserProfileWithContext(ctx, "172002275412279296")
 if err == nil {
     fmt.Println("Rep: " + user.Reputation)
 }
