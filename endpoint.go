@@ -4,12 +4,20 @@ import "fmt"
 
 const baseURL = "https://api.tatsu.gg/v1"
 
-func getAllTimeGuildMemberRanking(guildID string, userID string) string {
-	return baseURL + fmt.Sprintf("/guilds/%s/rankings/members/%s/all", guildID, userID)
+type rankingPeriod string
+
+const (
+	rankingPeriodAllTime rankingPeriod = "all"
+	rankingPeriodMonth   rankingPeriod = "month"
+	rankingPerioidWeek   rankingPeriod = "week"
+)
+
+func getGuildMemberRanking(period rankingPeriod, guildID string, userID string) string {
+	return baseURL + fmt.Sprintf("/guilds/%s/rankings/members/%s/%s", string(period), guildID, userID)
 }
 
-func getAllTimeGuildRankings(guildID string, offset uint64) string {
-	return baseURL + fmt.Sprintf("/guilds/%s/rankings/all?offset=%v", guildID, offset)
+func getGuildRankings(period rankingPeriod, guildID string, offset uint64) string {
+	return baseURL + fmt.Sprintf("/guilds/%s/rankings/%s?offset=%v", string(period), guildID, offset)
 }
 
 func getUserProfile(userID string) string {
