@@ -103,7 +103,7 @@ func (rc *restClient) getCurrentWeekGuildMemberRanking(ctx context.Context, guil
 	var ranking *GuildMemberRanking
 
 	// Make request.
-	err := rc.get(ctx, getGuildMemberRanking(rankingPerioidWeek, guildID, userID), &ranking)
+	err := rc.get(ctx, getGuildMemberRanking(rankingPeriodWeek, guildID, userID), &ranking)
 
 	return ranking, err
 }
@@ -117,7 +117,7 @@ func (rc *restClient) getCurrentWeekGuildRankings(ctx context.Context, guildID s
 	var rankings *GuildRankings
 
 	// Make request.
-	err := rc.get(ctx, getGuildRankings(rankingPerioidWeek, guildID, offset), &rankings)
+	err := rc.get(ctx, getGuildRankings(rankingPeriodWeek, guildID, offset), &rankings)
 
 	return rankings, err
 }

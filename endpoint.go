@@ -9,7 +9,7 @@ type rankingPeriod string
 const (
 	rankingPeriodAllTime rankingPeriod = "all"
 	rankingPeriodMonth   rankingPeriod = "month"
-	rankingPerioidWeek   rankingPeriod = "week"
+	rankingPeriodWeek    rankingPeriod = "week"
 )
 
 func getGuildMemberRanking(period rankingPeriod, guildID string, userID string) string {
