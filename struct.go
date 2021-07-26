@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+type ApiError struct {
+	Code    uint   `json:"code"`
+	Message string `json:"message"`
+}
+
 type GuildMemberRanking struct {
 	GuildID string `json:"guild_id"`
 	Rank    int64  `json:"rank"`

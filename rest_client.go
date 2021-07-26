@@ -3,6 +3,7 @@ package tatsu_api
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"golang.org/x/xerrors"
@@ -162,7 +163,15 @@ func (rc *restClient) get(ctx context.Context, endpoint string, v interface{}) e
 
 	// Return error if status is not OK.
 	if resp.StatusCode != http.StatusOK {
-		return xerrors.New(resp.Status)
+		// Try parsing error body.
+		var errorResp ApiError
+		err = json.NewDecoder(resp.Body).Decode(&errorResp)
+		if err != nil {
+			// Return status as error.
+			return xerrors.New(resp.Status)
+		}
+
+		return xerrors.New(fmt.Sprintf("%d: %s", errorResp.Code, errorResp.Message))
 	}
 
 	// Parse response.
