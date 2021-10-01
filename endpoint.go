@@ -13,11 +13,11 @@ const (
 )
 
 func getGuildMemberRanking(period rankingPeriod, guildID string, userID string) string {
-	return baseURL + fmt.Sprintf("/guilds/%s/rankings/members/%s/%s", string(period), guildID, userID)
+	return baseURL + fmt.Sprintf("/guilds/%s/rankings/members/%s/%s", guildID, userID, string(period))
 }
 
 func getGuildRankings(period rankingPeriod, guildID string, offset uint64) string {
-	return baseURL + fmt.Sprintf("/guilds/%s/rankings/%s?offset=%v", string(period), guildID, offset)
+	return baseURL + fmt.Sprintf("/guilds/%s/rankings/%s?offset=%v", guildID, string(period), offset)
 }
 
 func getUserProfile(userID string) string {
