@@ -1,8 +1,9 @@
 package tatsu_api
 
 import (
-	"golang.org/x/xerrors"
 	"time"
+
+	"golang.org/x/xerrors"
 )
 
 type Timestamp string
