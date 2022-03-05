@@ -6,6 +6,13 @@ import (
 	"golang.org/x/xerrors"
 )
 
+type Action uint8
+
+const (
+	ActionAdd    Action = iota
+	ActionRemove Action = iota
+)
+
 type Timestamp string
 
 func (t Timestamp) Parse() (time.Time, error) {
